@@ -1,0 +1,173 @@
+ .portfolio .portfolio-item {
+    margin-bottom: 30px;
+  }
+
+  .section-title1{
+    margin-top: 40px;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .card, .accordion{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .portfolio-wrap{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .portfolio #portfolio-flters {
+    padding: 0;
+    margin: 0 auto 25px auto;
+    list-style: none;
+    text-align: center;
+  }
+  
+  .portfolio #portfolio-flters li {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #444444;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .portfolio #portfolio-flters li:hover,
+  .portfolio #portfolio-flters li.filter-active {
+    color: #009cea;
+  }
+  
+   #portfolio-flters li:last-child {
+    margin-right: 0;
+  }
+  
+   .portfolio-wrap {
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+   .portfolio-wrap::before {
+    content: "";
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 30px;
+    right: 30px;
+    top: 30px;
+    bottom: 30px;
+    transition: all ease-in-out 0.3s;
+    z-index: 2;
+    opacity: 0;
+  }
+  
+   .portfolio-wrap .portfolio-info {
+    opacity: 0;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 3;
+    transition: all ease-in-out 0.3s;
+  }
+  
+  .portfolio-wrap .portfolio-info h4 {
+    font-size: 20px;
+    color: #364146;
+    font-weight: 600;
+  }
+  
+   .portfolio-wrap .portfolio-info p {
+    color: #364146;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+   .portfolio-wrap .portfolio-links {
+    opacity: 0;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    text-align: center;
+    z-index: 3;
+    position: absolute;
+    transition: all ease-in-out 0.3s;
+  }
+  
+   .portfolio-wrap .portfolio-links a:hover {
+    color: #fff;
+    background: #009cea;
+  }
+  
+   .portfolio-wrap:hover::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 1;
+  }
+  
+   .portfolio-wrap:hover .portfolio-info {
+    opacity: 1;
+    top: calc(50% - 48px);
+  }
+  
+   .portfolio-wrap:hover .portfolio-links {
+    opacity: 1;
+    bottom: calc(50% - 50px);
+  }
+
+
+  .user-rating-div {
+    border: none;
+    float: left;
+    /*margin: 20px;*/
+}
+ .user-rating-label {
+    margin: 0;
+    padding: 0;
+}
+.user-rating-div input {
+    display: none;
+}
+.user-rating-div label:before,
+.user-rating-div .user-rating-star-half:before{
+    cursor: pointer;
+    /*position: relative;*/
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005"; /*Full star*/
+    clip-path:inset(0 0 0 50%);
+}
+.user-rating-div .user-rating-star-half:before {
+    margin-right: -5rem !important;
+    clip-path:inset(0 50% 0 0);
+}
+
+.user-rating-div label {
+    color: grey;
+    float: right;
+}
+
+/*Highlight Stars on Hover*/
+.user-rating-div input:checked ~ label, /* show gold star when clicked */
+.user-rating-div:not(:checked) label:hover, /* hover current star */
+.user-rating-div:not(:checked) label:hover ~ label { /* hover previous stars in list */
+    color: orange;
+}
+
+.user-rating-div input:checked + label:hover, /* hover current star when changing rating */
+.user-rating-div input:checked ~ label:hover, 
+.user-rating-div label:hover ~ input:checked ~ label, /* lighten current selection */
+.user-rating-div input:checked ~ label:hover ~ label { 
+    color: gold;
+}
+

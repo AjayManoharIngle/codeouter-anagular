@@ -1,0 +1,157 @@
+<div class="container" *ngIf="flag === '/home' || flag === '/' ">
+  <div class="section-title" data-aos="fade-up">
+    <h2>{{hometitle}}</h2>
+    <p>{{desc}}</p>
+  </div>
+  <div class="row" *ngIf="switch">
+    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+      <button class="btn btn-outline-primary m-2" *ngFor="let item of categeory">
+        {{item}}
+      </button>
+    </div>
+  </div>
+  <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+    <div [class]="'col-lg-4 col-md-6 portfolio-item filter-'+item.categeory" *ngFor="let item of courses; let i=index;">
+      <div class="portfolio-wrap p-1" *ngIf="i != homelimit">
+        <img src="{{images}}{{item.imgUrl}}" class="img-fluid" alt="">
+        <div class="portfolio-info">
+          <h4>{{item.categeory}}</h4>
+        </div>
+        <div class="portfolio-links">
+          <a [routerLink]="'../course/'+[item.id]"><i class="bx bx-link"></i><button class="btn btn-primary">More
+              Details</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="flag === '/course' ">
+  <div class="section-title1" data-aos="fade-up">
+    <h2>{{coursetitle}}</h2>
+  </div>
+  <div class="row">
+  <div class="col-lg-3">
+    <div class="card">
+      <div class="card-header">
+        <strong>Filters</strong>
+      </div>
+      <div class="card-body">
+        <div class="accordion mt-2" id="accordionExample" *ngFor="let item of filterList[0]; let i = index" >
+          <div class="accordion-item"   *ngIf="i != 0">
+            <h2 class="accordion-header" [id]="'heading'+i">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">                  
+                <strong  *ngIf="i== 1">Categeories</strong>
+                <strong  *ngIf="i== 2">Price</strong>
+                <strong  *ngIf="i== 3">Review</strong>
+              </button>
+            </h2>
+            <div [id]="'collapse'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">              
+              <div class="accordion-body" *ngIf="i == 1">
+                <ul class="list-group">
+                  <li  class="list-group-item" *ngFor="let ele of filterList[0][i]; let p = index">
+                    <input type="checkbox"  (change)="fieldsChange($event,ele)"/> {{ele}}
+                  </li>
+                </ul>
+              </div>
+              <div class="accordion-body" *ngIf="i == 2">
+                <div class="card">
+                  <div class="card-body">
+                    Price Range : {{priceRange}}
+                    <hr>
+                    <input type="range" value="0" min="0" max="1000" (change)="rangeSlide($event)">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-body" *ngIf="i == 3">
+                <div class="card">
+                  <div class="card-body">
+                    Review between range: <p *ngIf="reviewsStar >= 0.5">{{reviewsStar-0.5}} - {{reviewsStar}}</p>
+                    <hr>
+                    <div class="user-rating-div">
+                      <form #myForm = "ngForm" (change)="data(myForm)">
+                      <input id="Note-5" name="note" type="radio" value="5" ngModel/>
+                      <label class="user-rating-label user-rating-star-full" for="Note-5" title="Note 5/5"></label>
+                    
+                      <input id="Note-4-5" name="note" type="radio" value="4.5" ngModel/>
+                      <label class="user-rating-label user-rating-star-half" for="Note-4-5" title="Note 4.5/5"></label>
+                    
+                      <input id="Note-4" name="note" type="radio" value="4" ngModel/>
+                      <label class="user-rating-label user-rating-star-full" for="Note-4" title="Note 4/5"></label>
+                    
+                      <input id="Note-3-5" name="note" type="radio" value="3.5" ngModel/>
+                      <label class="user-rating-label user-rating-star-half" for="Note-3-5" title="Note 3.5/5"></label>
+                    
+                      <input id="Note-3" name="note" type="radio" value="3" ngModel/>
+                      <label class="user-rating-label user-rating-star-full" for="Note-3" title="Note 3/5"></label>
+                    
+                      <input id="Note-2-5" name="note" type="radio" value="2.5" ngModel/>
+                      <label class="user-rating-label user-rating-star-half" for="Note-2-5" title="Note 2.5/5"></label>
+                    
+                      <input id="Note-2" name="note" type="radio" value="2" ngModel/>
+                      <label class="user-rating-label user-rating-star-full" for="Note-2" title="Note 2/5"></label>
+                    
+                      <input id="Note-1-5" name="note" type="radio" value="1.5" ngModel/>
+                      <label class="user-rating-label user-rating-star-half" for="Note-1-5" title="Note 1.5/5"></label>
+                    
+                      <input id="Note-1" name="note" type="radio" value="1" ngModel/>
+                      <label class="user-rating-label user-rating-star-full" for="Note-1" title="Note 1/5"></label>
+                    
+                      <input id="Note-0-5" name="note" type="radio" value="0.5" ngModel />
+                      <label class="user-rating-label user-rating-star-half" for="Note-0-5" title="Note 0.5/5"></label>
+                    </form>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  <div class="col-lg-9">
+    <div class="row " *ngIf="switch">
+      <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+        <button class="btn btn-outline-primary m-2" *ngFor="let item of categeory">
+          {{item}}
+        </button>
+      </div>
+    </div>
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" *ngIf="filterMergeCourse.length != 0">
+      <div [class]="'col-lg-4 col-md-6 mt-2 portfolio-item filter-'+item.categeory"
+        *ngFor="let item of filterMergeCourse; let i=index;">
+        <div class="portfolio-wrap p-1">
+          <img src="{{images}}{{item.imgUrl}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{item.categeory}}</h4>
+          </div>
+          <div class="portfolio-links">
+            <a [routerLink]="[item.id]"><i class="bx bx-link"></i><button
+                class="btn btn-primary">Buy Now</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-warning mt-2" role="alert" *ngIf="someData == 'some' && (filterCourseByReview.length == 0 && filterMergeCourse.length == 0)">
+      Please select other review point
+    </div>
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" *ngIf="filterCourse.length == 0 && filterCourseByPrice.length == 0 && filterCourseByReview.length == 0">
+      <div [class]="'col-lg-4 col-md-6 mt-2 portfolio-item filter-'+item.categeory"
+        *ngFor="let item of courses; let i=index;">
+        <div class="portfolio-wrap p-1">
+          <img src="{{images}}{{item.imgUrl}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{item.categeory}}</h4>
+          </div>
+          <div class="portfolio-links">
+            <a [routerLink]="[item.id]"><i class="bx bx-link"></i><button
+                class="btn btn-primary">Buy Now</button></a>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+</div>

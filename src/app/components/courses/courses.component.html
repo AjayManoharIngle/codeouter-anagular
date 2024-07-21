@@ -1,0 +1,8 @@
+<section id="portfolio" class="portfolio m-2" *ngIf="(route == '/home' || route == '/' ) && courseSectionswitch  ">  
+    <app-courses-detail [flag]="route"></app-courses-detail>
+</section>
+
+<section id="portfolio" class="portfolio m-2" *ngIf="route == '/course'">  
+    <app-courses-detail [flag]="route"></app-courses-detail>
+</section>
+

@@ -1,0 +1,17 @@
+<section id="services" class="services section-bg" *ngIf="switch">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>{{title}}</h2>
+        <p>{{desc}}</p>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-items-stretch p-1" data-aos="zoom-in" *ngFor="let item of serviceObj">
+          <div [class]="'icon-box icon-box-'+ item.color">
+            <div class="icon"><i class={{item.icon}}></i></div>
+            <h4 class="title"><a href="">{{item.title}}</a></h4>
+            <p class="description">{{item.desc}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

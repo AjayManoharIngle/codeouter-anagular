@@ -1,0 +1,21 @@
+<section id="faq" class="faq section-bg" *ngIf="switch">
+        <div class="container">
+          <div class="section-title" data-aos="fade-up">
+            <h2>{{title}}</h2>
+          </div>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item" *ngFor="let item of freqQue; let i = index">
+              <h2 class="accordion-header" [id]="'heading'+i">
+                <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">                  
+                  {{item.que}}
+                </button>
+              </h2>
+              <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == 0 }" [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionExample">              
+                <div class="accordion-body">
+                  - &nbsp;&nbsp;{{item.ans}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</section>

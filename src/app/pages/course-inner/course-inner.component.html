@@ -1,0 +1,169 @@
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+        <ol>
+            <li>{{header}}</li>
+        </ol>
+        <h2>{{courseDetail[0].title}}</h2>
+    </div>
+</section>
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-8">
+                <div class="portfolio-description">
+                    <ul class="nav nav-tabs m-2" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">About</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">Syllabus</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review"
+                                type="button" role="tab" aria-controls="review" aria-selected="false">Reviews</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active m-2" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <!-- <div class="portfolio-details-slider swiper mt-2">
+                                <div class="swiper-wrapper align-items-center">
+                                    <div class="swiper-slide">
+                                        <img src="{{baseImg}}{{courseDetail[0].imgUrl}}" alt="" class="rounded"  height="400">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="card mt-2">
+                                <div class="card-body">
+                                    <div class="row mt-2">
+                                        <div class="col-md-12">
+                                            <strong>Description : </strong>
+                                            <hr>
+                                            <p>{{courseAbout[0][1]}}</p>
+                                            <p *ngIf="showAboutPoint2">{{courseAbout[1][2]}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-2">
+                                <div class="card-body">
+                                    <b>WHAT YOU WILL LEARN</b>
+                                    <div class="row" *ngFor="let item of learnPoints; let i = index">
+                                        <div class="col-md-12">
+                                            <p><i class="bi bi-check2-square m-1"></i>{{item}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-2">
+                                <div class="card-body" >
+                                    <strong>This course includes: </strong>
+                                    <hr>
+                                    <div class="container" >
+                                        <div class="row" >
+                                            <div class="col-lg-6" *ngFor="let item of courseFeature" >
+                                                <i [ngClass]="item.icon" class="icon p-1"></i>
+                                                <b class="head">{{item.title}}</b>
+                                                <p>{{item.desc}}</p>
+                                            </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <h4 class="mt-4"><strong>Course Content : </strong></h4>
+                                <div *ngIf="syllbusStatus == 1">
+                                    <h5>This course don't have course content</h5>
+                                </div>
+                                <div *ngIf="syllbusStatus == 0">
+                                      <div class="accordion mt-2" id="accordionExample" *ngFor="let item of storeCourseDatabyId; let j=index">
+                                        <div class="accordion-item" *ngIf="j != 0 && storeCourseDatabyId.length > 2">
+                                            <h2 class="accordion-header" [id]="'heading'+j">
+                                                <button class="accordion-button" type="button"  data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+j" aria-expanded="true" [attr.aria-controls]="'collapse'+j" >   
+                                                    <strong>{{storeCourseDatabyId[j][1]}}</strong>               
+                                                </button>
+                                            </h2>
+                                            <div [id]="'collapse'+j" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+j" data-bs-parent="#accordionExample">              
+                                                <app-accordion-section [storeCourseDatabyId]="storeCourseDatabyId[j][0]"></app-accordion-section>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                        <div class="accordion mt-2" id="accordionExample" *ngIf="storeCourseDatabyId.length == 2">
+                                            <div class="accordion-item" *ngFor="let item of storeCourseDatabyId[1][0]; let j=index">
+                                                <h2 class="accordion-header" [id]="'heading'+item.no" >
+                                                  <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+item.no" aria-expanded="false" [attr.aria-controls]="'collapse'+item.no">                  
+                                                      <strong><i class="bi bi-fast-forward-circle-fill p-2"></i>{{item.title}} : {{item.duration}} min</strong>
+                                                  </button>
+                                                </h2>
+                                                <div [id]="'collapse'+item.no" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading'+item.no" data-bs-parent="#accordionExample">              
+                                                  <div class="accordion-body">
+                                                      <b>Points to be covered</b>
+                                                      <ul *ngFor="let point of item.points;">
+                                                          <li style="padding: 0;">{{point}}</li>
+                                                      </ul>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                            <div class="card mt-2">
+                                <div class="card-body">
+                                    <h4>Reviews :</h4>
+                                    <h5 *ngIf="status == 0" class="p-2"><b>This course don't have reviews yet</b></h5>
+                                    <div class="row" *ngIf="status == 1">
+                                        <div class="col-12 mt-2">
+                                            <div>
+                                                <b style="font-size: 30px;">{{totalstarsReview}}/5</b>
+                                                <div>
+                                                    <span class="bi bi-star-fill mx-1" *ngFor="let e of counter(countStar[0][starItemReview.length])"></span>
+                                                    <span class="bi bi-star-half mx-1" *ngFor="let e of counter(countStar[1][starItemReview.length])"></span>
+                                                </div>
+                                            </div>
+                                            <div class="card review">
+                                                <div class="card-body" *ngFor="let item of starItemReview; let i =index">
+                                                    <b>By {{item.name}} {{item.date}}
+                                                    <span class="bi bi-star-fill mx-1" *ngFor="let e of counter(countStar[0][i])"></span>
+                                                    <span class="bi bi-star-half mx-1" *ngFor="let e of counter(countStar[1][i])"></span>
+                                                    </b>
+                                                    <p style="font-size: 15px;">{{item.desc}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="portfolio-details-slider swiper mt-2">
+                            <div class="swiper-wrapper align-items-center">
+                                <div class="swiper-slide">
+                                    <img src="{{baseImg}}{{courseDetail[0].imgUrl}}" alt="" class="rounded"  height="400">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <h4 *ngIf="syllbusStatus == 0"><b>Total course duration : {{duration}} hr.</b></h4>
+                        </div>
+                        <div class="row">
+                            <b class="price">Course Price : {{courseDetail[0].price}} {{courseDetail[0].currency}}</b>
+                        </div>
+                        <button class="btn btn-outline-primary mt-1" style="width: 100%;">Buy Now</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>

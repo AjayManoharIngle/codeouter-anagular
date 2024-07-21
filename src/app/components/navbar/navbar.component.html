@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg fixed-top ">
+  <div class="container">
+  <a class="navbar-brand" routerLink='home'>
+    <img src="../../../assets/img/logo.JPG" alt="Bootstrap" width="120" height="50" routerLink='home'>
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="bi bi-list"></i></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink='home' routerLinkActive="active-link">{{nav.homeName}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='about' routerLinkActive="active-link">{{nav.aboutName}}</a>
+        </li>
+        <li class="dropdown"><a routerLink='course' class="nav-link"><span>{{nav.courseName}}</span> <i class="bi bi-chevron-down" *ngIf="nav.showDropDown"></i></a>
+          <ul *ngIf="nav.showDropDown">
+            <li *ngFor="let item of nav.addDropDownItem;">
+              <a class="nav-link scrollto">{{item}}</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active-link" routerLink='contact'>{{nav.contactName}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

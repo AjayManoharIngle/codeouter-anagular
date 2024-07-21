@@ -1,0 +1,55 @@
+<div id="testimonials" class="testimonials">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false"
+            data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="container">
+                    <div class="section-title" data-aos="fade-up">
+                        <h2>{{header}}</h2>
+                        <p>{{desc}}</p>
+                    </div>
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-4" *ngFor="let item of groupOfReviews3[0]">
+                            <div class="testimonial-item">
+                                <p>
+                                    <i class="bi bi-blockquote-left quote-icon-left"></i>
+                                    {{item.content}}
+                                    <i class="bi bi-blockquote-right quote-icon-right"></i>
+                                </p>
+                                <img src="{{imgBaseUrl}}testimonials/{{item.img}}" class="testimonial-img" alt="">
+                                <h3>{{item.name}}</h3>
+                                <h4>{{item.position}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item " *ngFor="let item of groupOfReviews3.slice(1)">
+                    <div class="row" >
+                        <div class="col-md-4" *ngFor="let ele of item" >
+                            <div class="testimonial-item" >
+                                <p>
+                                    <i class="bi bi-blockquote-left quote-icon-left"></i>
+                                    {{ele.content}}
+                                    <i class="bi bi-blockquote-right quote-icon-right"></i>
+                                </p>
+                                <img src="{{imgBaseUrl}}testimonials/{{ele.img}}" class="testimonial-img" alt="">
+                                <h3>{{ele.name}}</h3>
+                                <h4>{{ele.position}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+</div><!-- End Testimonials Section -->

@@ -1,0 +1,47 @@
+<section id="contact" class="contact section-bg">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>{{header}}</h2>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-right">
+          <div class="info">
+            <div class="address" *ngFor="let item of desc">
+              <i [class]=item.icon></i>
+              <h4>{{item.title}}</h4>
+              <p>{{item.detail}}</p>
+            </div>
+            <iframe [src]="mapSrc | safe"
+            frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left">
+          <form role="form" class="php-email-form" [name]="header | removeSpace | lowercase" #contactUser="ngForm" (ngSubmit)="saveContactUser(contactUser.value)">
+            <div class="row">
+              <div class="form-group col-md-6" *ngFor="let col1 of column1Label">
+                <label for={{col1}}>{{col1}}</label>
+                <input type="text" [name]="col1 | lowercase | removeSpace" class="form-control" [id]="col1 | lowercase | removeSpace" required ngModel>
+              </div>
+              <div class="form-group col-md-6 mt-3 mt-md-0" *ngFor="let col2 of column2Label">
+                <label for={{col2}}>{{col2}}</label>
+                <input type="text" class="form-control" [name]="col2 | lowercase | removeSpace" [id]="col2 | lowercase | removeSpace" required ngModel>
+              </div>
+            </div>
+            <div class="form-group mt-3" *ngFor="let one of oneFieldLabel; let i=index">
+              <label for={{one}}>{{one}}</label>
+              <input type="text" class="form-control" [name]="one | lowercase | removeSpace" [id]="one | lowercase | removeSpace" required ngModel>
+            </div>
+            <div class="form-group mt-3">
+              <label for={{messageFieldLabel}}>{{messageFieldLabel}}</label>
+              <textarea class="form-control" [name]="messageFieldLabel | lowercase | removeSpace" rows={{messageRow}} required ngModel></textarea>
+            </div>
+            <div class="text-center"><button type="submit">{{nameButton}}</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+</section>
